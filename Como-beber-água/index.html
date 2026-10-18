@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0c2340">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
+<meta name="description" content="Fluxa: a forma profissional de beber água. Do copo ao último gole, com registro completo.">
+<title>Fluxa | A forma profissional de beber água</title>
+<!--
+  VERSÃO 5.0: POLIMENTO CORPORATIVO (sátira de site B2B)
+
+  DECISÕES
+  1. Conceito: o "como beber água" vira o site de uma empresa fictícia, a Fluxa.
+     A piada é o contraste entre linguagem corporativa e a tarefa trivial.
+  2. Saí do visual "cara de IA": sem creme/terracota, sem emojis, sem rótulos em
+     caixa-alta, sem fade-in em toda seção, sem destaque de uma palavra no título.
+     Paleta B2B: branco, cinza-azulado, azul institucional e marinho.
+     Tipografia: uma família (Segoe UI / Helvetica Neue), pesos e escala definidos.
+  3. Estrutura real de produto: cabeçalho com status, hero com painel, clientes,
+     números, planos, implantação em 6 etapas, FAQ, chamada final, rodapé.
+  4. Numeração só onde há sequência real: as 6 etapas de implantação.
+  5. Mecânicas mantidas: escolha de plano = escolha do copo (persiste), limpeza de
+     3 manchas, torneira com pressão e faixa-alvo, transporte, 3 goles, certificado.
+  6. Movimento: uma única sequência orquestrada na abertura (painel enche).
+     O resto só reage a ações do usuário.
+  7. Segurança: CSP por meta, nenhum innerHTML, textContent em todo conteúdo dinâmico.
+  8. Acessibilidade: foco visível, aria-live, prefers-reduced-motion, mobile.
+  9. Removi o som e as animações de scroll para manter o arquivo leve e limpo.
+ 10. Versão 5.0: inclui gráfico SVG com dados fictícios, depoimentos e três FAQs.
+ 11. O gráfico não depende de bibliotecas; todos os novos elementos respeitam a CSP existente.
+-->
+<style>
+:root{--bg:#fff;--sup:#f3f6fa;--mar:#0c2340;--azul:#1763d6;--azul2:#0f4db0;--agua:#4bb3e6;--linha:#dbe3ed;--txt:#1d2b3f;--mudo:#5a6a7f;--ok:#17825a;--erro:#b3261e;--max:1120px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.6 "Segoe UI","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--azul);outline-offset:3px}
+.wrap{width:min(var(--max),calc(100% - 40px));margin-inline:auto}
+h1,h2,h3{margin:0;color:var(--mar);letter-spacing:-.02em;line-height:1.12}
+h1{font-size:clamp(38px,5.6vw,64px);font-weight:750}
+h2{font-size:clamp(28px,3.6vw,42px);font-weight:700}
+h3{font-size:19px;font-weight:700}
+p{margin:0}.mudo{color:var(--mudo)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 22px;border:1px solid var(--azul);border-radius:6px;background:var(--azul);color:#fff;font-weight:600;font-size:15px;cursor:pointer;transition:background .2s,transform .15s}
+.btn:hover:not(:disabled){background:var(--azul2)}.btn:active{transform:translateY(1px)}
+.btn.sec{background:#fff;color:var(--azul);border-color:var(--linha)}.btn.sec:hover:not(:disabled){background:var(--sup)}
+.btn.peq{min-height:38px;padding:0 16px;font-size:14px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+
+/* CABEÇALHO */
+header{position:sticky;top:0;z-index:50;background:rgb(255 255 255/94%);backdrop-filter:blur(10px);border-bottom:1px solid var(--linha)}
+header .wrap{display:flex;align-items:center;gap:28px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:800;letter-spacing:-.03em;color:var(--mar)}
+.logo svg{width:26px;height:26px}
+nav{display:flex;gap:26px;margin-left:12px;font-size:14.5px;font-weight:500;color:var(--mudo)}
+nav a:hover{color:var(--mar)}
+.dir{margin-left:auto;display:flex;align-items:center;gap:14px}
+.impl{display:flex;align-items:center;gap:10px;padding:6px 12px;border:1px solid var(--linha);border-radius:99px;font-size:13px;font-weight:600;color:var(--mudo)}
+.impl .tr{width:54px;height:5px;border-radius:9px;background:var(--linha);overflow:hidden}
+.impl .tr i{display:block;height:100%;width:0;background:var(--ok);transition:width .4s}
+.rolagem{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--azul)}
+
+/* HERO */
+.hero{padding:84px 0 72px;background:var(--sup);border-bottom:1px solid var(--linha)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.hero h1{max-width:560px}
+.hero .sub{max-width:480px;margin:22px 0 30px;font-size:18px;color:var(--mudo)}
+.acoes{display:flex;flex-wrap:wrap;gap:12px}
+.hero small{display:block;margin-top:18px;color:var(--mudo);font-size:13px}
+.painel{background:#fff;border:1px solid var(--linha);border-radius:12px;box-shadow:0 18px 40px rgb(12 35 64/9%);overflow:hidden}
+.painel .topo{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--linha);font-weight:650;font-size:14px}
+.status{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--ok)}
+.status:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok)}
+.painel .corpo{display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:center;padding:26px 20px}
+.metricas{display:grid;gap:14px}
+.metricas div{display:flex;justify-content:space-between;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--linha);font-size:14px}
+.metricas div:last-child{border:0;padding:0}
+.metricas span{color:var(--mudo)}.metricas b{color:var(--mar)}
+.painel .rod{padding:12px 20px;background:var(--sup);font-size:12.5px;color:var(--mudo)}
+
+/* GRÁFICO DE INDICADORES NO HERO */
+.grafico-hero{grid-column:2;min-width:0;margin-top:-34px;padding:18px 20px 12px;border:1px solid var(--linha);border-radius:10px;background:#fff}
+.grafico-hero .grafico-cab{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.grafico-hero h2{font-size:15px;letter-spacing:0;font-weight:700}
+.grafico-hero .grafico-meta{font-size:12px;color:var(--mudo)}
+.grafico-hero svg{display:block;width:100%;height:auto;overflow:visible}
+.grafico-hero .eixo{stroke:var(--linha);stroke-width:1}
+.grafico-hero .linha-dados{fill:none;stroke:var(--azul);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.grafico-hero .ponto-dado{fill:#fff;stroke:var(--azul);stroke-width:2}
+.grafico-hero .rotulo-grafico{fill:var(--mudo);font:11px "Segoe UI",Arial,sans-serif}
+
+/* DEPOIMENTOS */
+.depoimentos{padding:82px 0;border-bottom:1px solid var(--linha)}
+.depoimentos .cab{margin-bottom:32px}
+.depoimentos-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.depoimento{display:flex;flex-direction:column;justify-content:space-between;gap:24px;min-height:190px;padding:24px;border:1px solid var(--linha);border-radius:10px;background:#fff}
+.depoimento blockquote{margin:0;color:var(--mar);font-size:16px;line-height:1.55}
+.depoimento .autor{padding-top:16px;border-top:1px solid var(--linha)}
+.depoimento .autor b{display:block;font-size:14px;color:var(--mar)}
+.depoimento .autor span{display:block;margin-top:3px;color:var(--mudo);font-size:13px}
+
+/* COPO (componente reutilizado) */
+.copo{position:relative;flex:none;width:104px;height:150px;border:3px solid var(--mar);border-top-width:2px;border-radius:6px 6px 24px 24px;overflow:hidden;background:rgb(75 179 230/8%);--nivel:0%}
+.copo.caneca{width:118px;height:126px;border-radius:5px 5px 14px 14px}
+.copo.garrafa{width:78px;height:176px;border-radius:24px 24px 10px 10px}
+.copo .nv{position:absolute;left:0;bottom:0;width:100%;height:var(--nivel);background:var(--agua);transition:height .9s cubic-bezier(.22,1,.36,1)}
+.copo .nv:before{content:"";position:absolute;top:-6px;left:-50%;width:200%;height:12px;border-radius:50%;background:#8fd2f2;animation:onda 3s ease-in-out infinite}
+@keyframes onda{50%{translate:20% 0}}
+.copo .zona{position:absolute;left:0;right:0;bottom:70%;height:22%;border-top:2px dashed var(--ok);background:repeating-linear-gradient(135deg,rgb(23 130 90/18%) 0 4px,transparent 4px 8px)}
+.copo.sujo:after{content:"";position:absolute;inset:0;background:rgb(110 85 50/25%)}
+.hero .copo .nv{transition:none}
+.hero .copo{animation:enche 2.2s .3s cubic-bezier(.22,1,.36,1) both}
+@keyframes enche{from{--nivel:0%}to{--nivel:80%}}
+@property --nivel{syntax:"<percentage>";inherits:true;initial-value:0%}
+
+/* CLIENTES E NÚMEROS */
+.clientes{padding:34px 0;border-bottom:1px solid var(--linha)}
+.clientes .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.clientes p{font-size:13.5px;color:var(--mudo);max-width:210px}
+.clientes ul{display:flex;gap:34px;flex-wrap:wrap;margin:0;padding:0;list-style:none;font-size:18px;font-weight:700;letter-spacing:-.02em;color:#9aa8ba}
+.numeros{padding:72px 0;border-bottom:1px solid var(--linha)}
+.numeros .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.num{padding:4px 28px;border-left:1px solid var(--linha)}.num:first-child{border:0;padding-left:0}
+.num b{display:block;font-size:42px;line-height:1.1;letter-spacing:-.03em;color:var(--azul);font-weight:750}
+.num span{display:block;margin-top:8px;font-size:14px;color:var(--mudo)}
+
+/* SEÇÕES */
+.secao{padding:96px 0;border-bottom:1px solid var(--linha)}
+.secao.cinza{background:var(--sup)}
+.cab{max-width:640px;margin-bottom:44px}
+.cab p{margin-top:14px;color:var(--mudo);font-size:17px}
+.etapa{display:block;margin-bottom:12px;font-size:14px;font-weight:700;color:var(--azul)}
+
+/* PLANOS (etapa 1) */
+.planos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.plano{display:flex;flex-direction:column;padding:28px;border:1px solid var(--linha);border-radius:12px;background:#fff;transition:border-color .2s,box-shadow .2s}
+.plano.sel{border-color:var(--azul);box-shadow:0 0 0 1px var(--azul),0 14px 30px rgb(23 99 214/10%)}
+.plano .vit{display:grid;place-items:end center;height:190px;margin:-8px 0 20px;padding-bottom:14px;border-radius:8px;background:var(--sup)}
+.plano .vit .copo{--nivel:60%;transform:scale(.72);transform-origin:bottom}
+.plano .preco{margin:10px 0 4px;font-size:34px;font-weight:750;letter-spacing:-.03em;color:var(--mar)}
+.plano .preco small{font-size:14px;font-weight:500;color:var(--mudo)}
+.plano ul{margin:16px 0 24px;padding:0;list-style:none;display:grid;gap:9px;font-size:14.5px;color:var(--mudo)}
+.plano li{padding-left:24px;position:relative}
+.plano li:before{content:"";position:absolute;left:3px;top:6px;width:10px;height:6px;border-left:2px solid var(--ok);border-bottom:2px solid var(--ok);rotate:-45deg}
+.plano .btn{margin-top:auto}
+
+/* MÓDULOS DE IMPLANTAÇÃO */
+.mod{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.mod.inv>:first-child{order:2}
+.mod .tx p{margin-top:16px;color:var(--mudo);font-size:17px;max-width:460px}
+.mod ul{margin:22px 0 0;padding:0;list-style:none;display:grid;gap:10px;font-size:15px}
+.mod li{padding-left:24px;position:relative}
+.mod li:before{content:"";position:absolute;left:3px;top:7px;width:10px;height:6px;border-left:2px solid var(--azul);border-bottom:2px solid var(--azul);rotate:-45deg}
+.cena{position:relative;min-height:380px;display:flex;flex-direction:column;justify-content:space-between;gap:18px;padding:26px;border:1px solid var(--linha);border-radius:12px;background:#fff;overflow:hidden}
+.secao:not(.cinza) .cena{background:var(--sup)}
+.cena .palco{flex:1;display:grid;place-items:center;min-height:210px}
+.cena .rodape{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.leitura{font-size:14px;font-weight:600;color:var(--mar)}
+.copoWrap{position:relative;display:grid;place-items:center;width:140px;height:190px}
+.mancha{position:absolute;border:0;border-radius:50%;background:rgb(100 75 40/75%);cursor:pointer;transition:transform .25s,opacity .25s}
+.mancha:hover{transform:scale(1.2)}.mancha.some{transform:scale(0);opacity:0;pointer-events:none}
+
+/* TORNEIRA */
+.torneira{position:relative;width:190px;height:240px}
+.cano{position:absolute;top:0;left:20px;width:110px;height:84px;border:11px solid #3a5068;border-bottom:0;border-radius:36px 36px 0 0}
+.cano:after{content:"";position:absolute;right:-27px;bottom:-2px;width:40px;height:19px;border:9px solid #3a5068;border-left:0;border-radius:0 16px 16px 0}
+.fio{position:absolute;top:82px;left:124px;width:7px;height:0;border-radius:9px;background:repeating-linear-gradient(180deg,#3fa6dc 0 10px,#8fd2f2 10px 18px);background-size:100% 18px;transition:height .25s}
+.torneira.on .fio{height:100px;animation:fluxo .35s linear infinite}
+@keyframes fluxo{to{background-position:0 18px}}
+.torneira .copo{position:absolute;left:78px;bottom:0;scale:.9}
+.torneira .copo .nv{transition:height .12s linear}
+.alag{position:absolute;inset:auto 0 0 0;height:0;background:rgb(75 179 230/55%);transition:height 1.1s cubic-bezier(.22,1,.36,1);pointer-events:none}
+.cena.inunda .alag{height:100%}
+.cena.inunda{animation:bal .45s}
+@keyframes bal{25%{translate:-5px 0}75%{translate:5px 0}}
+#abrir{touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+
+/* TRANSPORTE */
+.trilho{position:relative;width:100%;max-width:340px;height:120px}
+.trilho .linha{position:absolute;left:30px;right:30px;top:78px;height:2px;background:repeating-linear-gradient(90deg,var(--linha) 0 8px,transparent 8px 14px)}
+.trilho .pt{position:absolute;top:70px;width:18px;height:18px;border-radius:50%;border:2px solid var(--mar);background:#fff}
+.trilho .a{left:22px}.trilho .b{right:22px}
+.trilho .rot{position:absolute;top:96px;font-size:13px;color:var(--mudo)}
+.trilho .rot.a{left:0}.trilho .rot.b{right:0}
+.trilho .copo{position:absolute;left:10px;top:0;width:36px;height:52px;border-width:2px;border-radius:3px 3px 10px 10px;--nivel:70%;transition:left 1.2s cubic-bezier(.65,0,.35,1)}
+.trilho.fim .copo{left:calc(100% - 46px)}
+
+/* INGESTÃO */
+.maq .copo{transform-origin:50% 15%;transition:transform .7s cubic-bezier(.22,1,.36,1)}
+.maq .copo.gole{transform:rotate(62deg) translate(8px,6px)}
+.pontos{display:flex;gap:8px}.pontos i{width:12px;height:12px;border-radius:50%;background:var(--linha);transition:background .3s}.pontos i.ok{background:var(--agua)}
+
+/* CERTIFICADO */
+.cert{display:none;padding:22px;border:1px solid var(--ok);border-radius:10px;background:#fff}
+.cert.on{display:block}
+.cert h3{margin-bottom:12px;color:var(--ok)}
+.cert dl{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:0;font-size:14px}
+.cert dt{color:var(--mudo)}.cert dd{margin:0;font-weight:600;color:var(--mar)}
+
+/* FAQ */
+.faq{max-width:760px}
+details{border-bottom:1px solid var(--linha)}
+summary{display:flex;justify-content:space-between;gap:16px;padding:22px 0;font-weight:650;font-size:17px;color:var(--mar);cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";font-size:22px;line-height:1;color:var(--azul);transition:rotate .25s}
+details[open] summary:after{rotate:45deg}
+details p{padding:0 0 22px;max-width:640px;color:var(--mudo)}
+
+/* CHAMADA FINAL E RODAPÉ */
+.final{padding:88px 0;background:var(--mar);color:#fff}
+.final .wrap{display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.final h2{color:#fff;max-width:620px}.final p{margin-top:12px;color:#aebcd0}
+.final .btn{background:#fff;color:var(--mar);border-color:#fff}.final .btn:hover{background:#e6eef9}
+footer{padding:56px 0 32px;background:#091a31;color:#8fa1b9;font-size:14px}
+footer .cols{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:32px;padding-bottom:36px;border-bottom:1px solid #1d3354}
+footer .logo{color:#fff;margin-bottom:12px}
+footer h4{margin:0 0 14px;font-size:14px;font-weight:650;color:#fff}
+footer ul{margin:0;padding:0;list-style:none;display:grid;gap:9px}
+footer a:hover{color:#fff}
+footer .fim{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px;font-size:13px}
+
+.aviso{position:fixed;left:50%;bottom:24px;z-index:200;max-width:calc(100% - 32px);padding:13px 20px;border-radius:8px;background:var(--mar);color:#fff;font-size:14px;box-shadow:0 10px 30px rgb(12 35 64/25%);opacity:0;pointer-events:none;transform:translate(-50%,16px);transition:.25s}
+.aviso.on{opacity:1;transform:translate(-50%,0)}
+
+@media(max-width:900px){nav,.impl .tx2{display:none}.hero .wrap,.mod{grid-template-columns:1fr;gap:36px}.grafico-hero{grid-column:auto;margin-top:-12px}.mod.inv>:first-child{order:0}.planos{grid-template-columns:1fr}.depoimentos-grid{grid-template-columns:1fr}.numeros .wrap{grid-template-columns:1fr 1fr;gap:28px 0}.num:nth-child(3){border-left:0;padding-left:0}footer .cols{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.secao{padding:68px 0}.depoimentos{padding:68px 0}.hero{padding:56px 0}.painel .corpo{grid-template-columns:1fr;justify-items:center}.dir .btn{display:none}.numeros .wrap{grid-template-columns:1fr}.num{border:0;padding-left:0}footer .cols{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#inicio" aria-label="Fluxa, início">
+      <svg viewBox="0 0 28 28" aria-hidden="true"><path d="M14 2.5S5.5 12 5.5 17.5a8.5 8.5 0 0 0 17 0C22.5 12 14 2.5 14 2.5Z" fill="#1763d6"/><path d="M10 18a4 4 0 0 0 4 4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+      Fluxa
+    </a>
+    <nav aria-label="Principal">
+      <a href="#planos">Planos</a><a href="#inspecao">Implantação</a><a href="#depoimentos">Depoimentos</a><a href="#faq">Perguntas frequentes</a>
+    </nav>
+    <div class="dir">
+      <div class="impl" aria-live="polite"><span id="impl">Implantação 0/6</span><div class="tr"><i id="implBarra"></i></div></div>
+      <a class="btn sec peq" href="#" data-aviso="Área do cliente indisponível. O login exige beber água primeiro.">Entrar</a>
+    </div>
+    <div class="rolagem" id="rolagem"></div>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <div>
+      <h1>A forma profissional de beber água.</h1>
+      <p class="sub">A Fluxa organiza o consumo de água, da escolha do recipiente ao registro final, com um processo claro e mensurável.</p>
+      <div class="acoes">
+        <a class="btn" href="#planos">Iniciar implantação</a>
+        <a class="btn sec" href="#" data-aviso="Nossos consultores estão ocupados bebendo água. Retornamos em breve.">Agendar demonstração</a>
+      </div>
+      <small>Sem cartão de crédito. Tenha um recipiente disponível.</small>
+    </div>
+    <div class="painel" aria-label="Exemplo do painel de hidratação">
+      <div class="topo">Painel de hidratação <span class="status">Operacional</span></div>
+      <div class="corpo">
+        <div class="copo" aria-hidden="true"><div class="nv"></div></div>
+        <div class="metricas">
+          <div><span>Nível do copo</span><b>80%</b></div>
+          <div><span>Qualidade da água</span><b>Potável</b></div>
+          <div><span>Próxima ação</span><b>Beber</b></div>
+        </div>
+      </div>
+      <div class="rod">Indicadores ilustrativos. O processo é demonstrativo.</div>
+    </div>
+    <div class="grafico-hero" role="group" aria-label="Gráfico ilustrativo de hidratação da equipe, com tendência crescente ao longo de seis períodos">
+      <div class="grafico-cab"><h2>Hidratação da equipe</h2><span class="grafico-meta">Índice fictício · 6 períodos</span></div>
+      <svg viewBox="0 0 420 132" role="img" aria-labelledby="graficoTitulo graficoDesc">
+        <title id="graficoTitulo">Hidratação da equipe</title>
+        <desc id="graficoDesc">Linha crescente com valores fictícios de 18, 26, 31, 45, 58 e 72.</desc>
+        <line class="eixo" x1="32" y1="18" x2="32" y2="100"/><line class="eixo" x1="32" y1="100" x2="404" y2="100"/>
+        <line class="eixo" x1="32" y1="72" x2="404" y2="72" stroke-dasharray="3 5"/><line class="eixo" x1="32" y1="44" x2="404" y2="44" stroke-dasharray="3 5"/>
+        <polyline class="linha-dados" points="42,82 112,73 182,66 252,49 322,34 392,20"/>
+        <circle class="ponto-dado" cx="42" cy="82" r="4"/><circle class="ponto-dado" cx="112" cy="73" r="4"/><circle class="ponto-dado" cx="182" cy="66" r="4"/><circle class="ponto-dado" cx="252" cy="49" r="4"/><circle class="ponto-dado" cx="322" cy="34" r="4"/><circle class="ponto-dado" cx="392" cy="20" r="4"/>
+        <text class="rotulo-grafico" x="38" y="118">P1</text><text class="rotulo-grafico" x="108" y="118">P2</text><text class="rotulo-grafico" x="178" y="118">P3</text><text class="rotulo-grafico" x="248" y="118">P4</text><text class="rotulo-grafico" x="318" y="118">P5</text><text class="rotulo-grafico" x="388" y="118" text-anchor="end">P6</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="clientes" aria-label="Clientes">
+  <div class="wrap">
+    <p>Organizações que adotaram o processo Fluxa</p>
+    <ul><li>Copos &amp; Cia</li><li>Torneiras do Brasil</li><li>Bebedouro S.A.</li><li>Instituto da Sede</li></ul>
+  </div>
+</section>
+
+<section class="numeros" aria-label="Números">
+  <div class="wrap">
+    <div class="num"><b>8,1 bi</b><span>pessoas com acesso potencial à água</span></div>
+    <div class="num"><b>99,9%</b><span>de disponibilidade operacional estimada</span></div>
+    <div class="num"><b>0</b><span>integrações necessárias</span></div>
+    <div class="num"><b>1</b><span>copo por operação, em média</span></div>
+  </div>
+</section>
+
+<!-- ETAPA 1: PLANOS = ESCOLHA DO COPO -->
+<section class="secao" id="planos">
+  <div class="wrap">
+    <div class="cab">
+      <span class="etapa">Etapa 1 de 6</span>
+      <h2>Escolha o equipamento do seu plano</h2>
+      <p>Comece pelo recipiente. Se já tem um copo, selecione o plano gratuito. A escolha será aplicada às etapas seguintes.</p>
+    </div>
+    <div class="planos">
+      <article class="plano sel" data-equip="vidro">
+        <div class="vit"><div class="copo"><div class="nv"></div></div></div>
+        <h3>Copo de vidro</h3>
+        <div class="preco">R$ 0 <small>usando o que você já tem</small></div>
+        <ul><li>Transparente e compatível com qualquer bancada</li><li>Reutilizável por anos</li><li>Suporte a torneira incluído</li></ul>
+        <button class="btn" type="button">Plano ativo</button>
+      </article>
+      <article class="plano" data-equip="caneca">
+        <div class="vit"><div class="copo caneca"><div class="nv"></div></div></div>
+        <h3>Caneca</h3>
+        <div class="preco">R$ 29 <small>pagamento único</small></div>
+        <ul><li>Hidratação com personalidade</li><li>Conteúdo menos exposto</li><li>Ideal para escritórios</li></ul>
+        <button class="btn sec" type="button">Selecionar plano</button>
+      </article>
+      <article class="plano" data-equip="garrafa">
+        <div class="vit"><div class="copo garrafa"><div class="nv"></div></div></div>
+        <h3>Garrafa</h3>
+        <div class="preco">R$ 49 <small>pagamento único</small></div>
+        <ul><li>Transporta água entre ambientes</li><li>Tampa inclusa</li><li>Mobilidade total</li></ul>
+        <button class="btn sec" type="button">Selecionar plano</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ETAPA 2: INSPEÇÃO -->
+<section class="secao cinza" id="inspecao">
+  <div class="wrap mod">
+    <div class="tx">
+      <span class="etapa">Etapa 2 de 6</span>
+      <h2>Verifique o recipiente antes de usá-lo</h2>
+      <p>Resíduos e manchas podem comprometer o uso. Remova os três pontos identificados para concluir a inspeção.</p>
+      <ul><li>Procure resíduos e manchas suspeitas</li><li>Lave com água e detergente, se necessário</li><li>Enxágue até não restar nada</li></ul>
+    </div>
+    <div class="cena">
+      <div class="palco"><div class="copoWrap">
+        <div class="copo sujo copoAtivo" id="copoInspecao"><div class="nv"></div></div>
+        <button class="mancha" type="button" style="width:26px;height:20px;top:44px;left:42px" aria-label="Remover mancha 1"></button>
+        <button class="mancha" type="button" style="width:20px;height:24px;top:98px;left:86px" aria-label="Remover mancha 2"></button>
+        <button class="mancha" type="button" style="width:30px;height:18px;top:138px;left:48px" aria-label="Remover mancha 3"></button>
+      </div></div>
+      <div class="rodape"><span class="leitura" id="stLimpeza" aria-live="polite">Manchas restantes: 3</span><span class="status" style="color:var(--mudo)">Inspeção em andamento</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ETAPA 3: CAPTAÇÃO -->
+<section class="secao" id="captacao">
+  <div class="wrap mod inv">
+    <div class="tx">
+      <span class="etapa">Etapa 3 de 6</span>
+      <h2>Encha o copo sem alagar a cozinha</h2>
+      <p>Mantenha o botão pressionado para liberar água. Solte quando o nível alcançar a faixa indicada.</p>
+      <ul><li>Use apenas água potável</li><li>Em dúvida sobre a qualidade, não consuma</li><li>Fria, fresca ou natural: a escolha é sua</li></ul>
+    </div>
+    <div class="cena" id="cenaTorneira">
+      <div class="palco"><div class="torneira" id="torneira" aria-hidden="true"><div class="cano"></div><div class="fio"></div><div class="copo copoAtivo" id="copoTorneira"><div class="nv"></div><div class="zona"></div></div></div></div>
+      <div class="rodape">
+        <span class="leitura" id="stTorneira" aria-live="polite">Aguardando comando.</span>
+        <span style="display:flex;gap:10px"><button class="btn peq" id="abrir" type="button">Segurar para encher</button><button class="btn sec peq" id="esvaziar" type="button">Esvaziar</button></span>
+      </div>
+      <div class="alag"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ETAPA 4: TRANSPORTE -->
+<section class="secao cinza" id="transporte">
+  <div class="wrap mod">
+    <div class="tx">
+      <span class="etapa">Etapa 4 de 6</span>
+      <h2>Leve o copo até a boca</h2>
+      <p>Percurso estimado: 40 cm. Segure o recipiente e eleve-o com um movimento contínuo.</p>
+      <ul><li>Evite deslocamentos bruscos</li><li>Mantenha o recipiente na vertical</li><li>Confirme o destino antes de inclinar</li></ul>
+    </div>
+    <div class="cena">
+      <div class="palco"><div class="trilho" id="trilho"><div class="linha"></div><div class="pt a"></div><div class="pt b"></div><div class="copo"><div class="nv"></div></div><span class="rot a">Bancada</span><span class="rot b">Boca</span></div></div>
+      <div class="rodape"><span class="leitura" id="stTransporte" aria-live="polite">Copo na bancada.</span><button class="btn peq" id="mover" type="button">Iniciar transporte</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ETAPA 5: INGESTÃO -->
+<section class="secao" id="ingestao">
+  <div class="wrap mod inv">
+    <div class="tx">
+      <span class="etapa">Etapa 5 de 6</span>
+      <h2>Beba. Sem pressa.</h2>
+      <p>Registre três goles para concluir a demonstração. Na prática, beba com calma e respeite a sua sede.</p>
+      <ul><li>Incline o copo com calma</li><li>Faça pausas entre os goles</li><li>Respire normalmente</li></ul>
+    </div>
+    <div class="cena maq">
+      <div class="palco"><div class="copo copoAtivo" id="copoBeber" style="--nivel:80%"><div class="nv"></div></div></div>
+      <div class="rodape"><span style="display:flex;align-items:center;gap:12px"><span class="pontos" id="pontos"><i></i><i></i><i></i></span><span class="leitura" id="stBeber" aria-live="polite">Nenhum gole registrado.</span></span><button class="btn peq" id="gole" type="button">Dar um gole</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ETAPA 6: VALIDAÇÃO -->
+<section class="secao cinza" id="validacao">
+  <div class="wrap mod">
+    <div class="tx">
+      <span class="etapa">Etapa 6 de 6</span>
+      <h2>Confirme a operação e emita o certificado</h2>
+      <p>O sistema não consegue verificar o consumo real. A validação depende da declaração do usuário.</p>
+      <div class="acoes" style="margin-top:26px"><button class="btn" id="sim" type="button">Confirmar que bebi água</button><button class="btn sec" id="nao" type="button">Ainda não</button></div>
+      <p id="decl" aria-live="polite" style="margin-top:14px;font-size:15px"></p>
+    </div>
+    <div>
+      <div class="cert" id="cert">
+        <h3>Certificado de conclusão</h3>
+        <dl>
+          <dt>Protocolo</dt><dd id="cProt"></dd>
+          <dt>Equipamento</dt><dd id="cEquip"></dd>
+          <dt>Tempo de operação</dt><dd id="cTempo"></dd>
+          <dt>Inundações</dt><dd id="cInund"></dd>
+          <dt>Pendências</dt><dd id="cPend"></dd>
+        </dl>
+        <button class="btn sec peq" id="copiar" type="button" style="margin-top:18px">Copiar relatório</button>
+      </div>
+      <div class="cena" id="vazio" style="min-height:260px"><div class="palco mudo" style="text-align:center;max-width:300px;margin:auto">O certificado aparece aqui depois da confirmação.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="depoimentos" id="depoimentos" aria-labelledby="titulo-depoimentos">
+  <div class="wrap">
+    <div class="cab"><h2 id="titulo-depoimentos">Resultados reconhecidos pelo mercado</h2><p>Relatos fictícios de profissionais que acompanharam a implantação.</p></div>
+    <div class="depoimentos-grid">
+      <article class="depoimento"><blockquote>“Reduzimos em 34% o tempo gasto discutindo qual recipiente atende ao nosso padrão interno.”</blockquote><div class="autor"><b>Marina Costa</b><span>Diretora de operações, Copos &amp; Cia</span></div></article>
+      <article class="depoimento"><blockquote>“O processo trouxe visibilidade a uma atividade que, até então, não possuía indicadores.”</blockquote><div class="autor"><b>Rogério Mendes</b><span>Gerente de eficiência, Torneiras do Brasil</span></div></article>
+      <article class="depoimento"><blockquote>“A emissão do certificado simplificou nossa prestação de contas sobre o consumo demonstrativo.”</blockquote><div class="autor"><b>Patrícia Nunes</b><span>Coordenadora de conformidade, Bebedouro S.A.</span></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="secao" id="faq">
+  <div class="wrap">
+    <div class="cab"><h2>Perguntas frequentes</h2></div>
+    <div class="faq">
+      <details><summary>A Fluxa substitui orientação médica?</summary><p>Não. Este projeto é humorístico. Para dúvidas sobre hidratação, consulte um profissional de saúde.</p></details>
+      <details><summary>Preciso de internet para beber água?</summary><p>Não. A água funciona offline desde sempre. Este site também: é um único arquivo.</p></details>
+      <details><summary>Posso usar um copo que já tenho?</summary><p>Pode, e é o plano mais econômico. Basta escolher o Copo de vidro na etapa 1.</p></details>
+      <details><summary>O que acontece se eu transbordar o copo?</summary><p>A cozinha é inundada e o evento fica registrado no seu certificado de conclusão.</p></details>
+      <details><summary>A Fluxa vende água?</summary><p>Não. A plataforma organiza uma demonstração de processo; o usuário providencia água potável.</p></details>
+      <details><summary>O certificado tem validade jurídica?</summary><p>Não. O documento é fictício e serve apenas como parte da experiência humorística.</p></details>
+      <details><summary>Qual é a meta diária ideal?</summary><p>As necessidades variam conforme a pessoa e as condições do dia. Para orientação individual, consulte um profissional de saúde.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <div><h2>Pronto para concluir sua implantação?</h2><p>O processo leva poucos minutos e exige água potável.</p></div>
+    <a class="btn" href="#planos">Iniciar implantação</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div><div class="logo">Fluxa</div><p>A forma profissional de beber água.</p></div>
+      <div><h4>Produto</h4><ul><li><a href="#planos">Planos</a></li><li><a href="#inspecao">Implantação</a></li><li><a href="#" data-aviso>Segurança</a></li></ul></div>
+      <div><h4>Empresa</h4><ul><li><a href="#" data-aviso>Sobre nós</a></li><li><a href="#" data-aviso>Carreiras</a></li><li><a href="#" data-aviso>Imprensa</a></li></ul></div>
+      <div><h4>Recursos</h4><ul><li><a href="#faq">Perguntas frequentes</a></li><li><a href="#" data-aviso>Documentação</a></li><li><a href="#" data-aviso>Contato</a></li></ul></div>
+    </div>
+    <div class="fim"><span>© 2026 Fluxa Soluções de Hidratação Ltda. Empresa fictícia.</span><span>Projeto humorístico. Não substitui orientação médica.</span></div>
+  </div>
+</footer>
+
+<div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+  "use strict";
+  const $ = (s, p = document) => p.querySelector(s);
+  const $$ = (s, p = document) => [...p.querySelectorAll(s)];
+  const reduzido = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Estado único. Os 6 itens de "feitas" alimentam o indicador do cabeçalho.
+  const estado = {
+    equip: "vidro", feitas: new Set(), nivel: 0, pressao: 0, timer: null,
+    goles: 0, inundacoes: 0, inicio: Date.now(), tempoAviso: null
+  };
+  const nomes = { vidro: "Copo de vidro", caneca: "Caneca", garrafa: "Garrafa" };
+  const etapas = { plano: "Plano", inspecao: "Inspeção", captacao: "Captação", transporte: "Transporte", ingestao: "Ingestão" };
+
+  function avisar(msg, ms = 3200) {
+    const a = $("#aviso"); a.textContent = msg; a.classList.add("on");
+    clearTimeout(estado.tempoAviso);
+    estado.tempoAviso = setTimeout(() => a.classList.remove("on"), ms);
+  }
+  function concluir(nome) {
+    if (estado.feitas.has(nome)) return;
+    estado.feitas.add(nome);
+    const n = estado.feitas.size;
+    $("#impl").textContent = `Implantação ${n}/6`;
+    $("#implBarra").style.width = (n / 6 * 100) + "%";
+  }
+
+  // Links sem destino real avisam em vez de saltar para o topo.
+  $$("[data-aviso]").forEach(a => a.addEventListener("click", e => {
+    e.preventDefault();
+    avisar(a.dataset.aviso || "Página em construção. A água continua disponível.");
+  }));
+
+  // Barra de leitura no cabeçalho.
+  let agendado = false;
+  function rolar() {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    $("#rolagem").style.width = (max > 0 ? scrollY / max * 100 : 0) + "%";
+    agendado = false;
+  }
+  addEventListener("scroll", () => { if (!agendado) { agendado = true; requestAnimationFrame(rolar); } }, { passive: true });
+
+  // ---------- Etapa 1: plano = copo (persiste nas etapas seguintes) ----------
+  const copos = $$(".copoAtivo");
+  function aplicarCopo(tipo) {
+    copos.forEach(c => { c.classList.remove("caneca", "garrafa"); if (tipo !== "vidro") c.classList.add(tipo); });
+  }
+  $$(".plano").forEach(card => $("button", card).addEventListener("click", () => {
+    $$(".plano").forEach(c => {
+      const ativo = c === card;
+      c.classList.toggle("sel", ativo);
+      const b = $("button", c);
+      b.textContent = ativo ? "Plano ativo" : "Selecionar plano";
+      b.classList.toggle("sec", !ativo);
+    });
+    estado.equip = card.dataset.equip;
+    aplicarCopo(estado.equip);
+    concluir("plano");
+    avisar(`Plano ${nomes[estado.equip]} ativado.`);
+  }));
+
+  // ---------- Etapa 2: remover 3 manchas ----------
+  let restantes = 3;
+  $$(".mancha").forEach(m => m.addEventListener("click", () => {
+    m.classList.add("some"); restantes--;
+    $("#stLimpeza").textContent = restantes ? `Manchas restantes: ${restantes}` : "Recipiente aprovado na inspeção.";
+    if (!restantes) { $("#copoInspecao").classList.remove("sujo"); concluir("inspecao"); avisar("Inspeção concluída."); }
+  }));
+
+  // ---------- Etapa 3: torneira com pressão crescente ----------
+  const torneira = $("#torneira"), copoT = $("#copoTorneira"), cenaT = $("#cenaTorneira"), stT = $("#stTorneira");
+  const setNivel = n => { estado.nivel = n; copoT.style.setProperty("--nivel", Math.min(n, 100) + "%"); };
+
+  function iniciarEncher(e) {
+    e.preventDefault();
+    if (estado.timer || cenaT.classList.contains("inunda")) return;
+    torneira.classList.add("on"); stT.textContent = "Fluxo em andamento.";
+    estado.timer = setInterval(() => {
+      estado.pressao = Math.min(estado.pressao + .25, 3);
+      setNivel(estado.nivel + 1.4 + estado.pressao);
+      if (estado.nivel >= 100) {                         // transbordou: classe antes de parar,
+        cenaT.classList.add("inunda"); pararEncher();    // para não contar como sucesso
+        estado.inundacoes++;
+        stT.textContent = "Transbordou. Use Esvaziar para tentar de novo.";
+        avisar("Cozinha inundada. O evento foi registrado.", 3600);
+      }
+    }, 120);
+  }
+  function pararEncher() {
+    clearInterval(estado.timer); estado.timer = null; torneira.classList.remove("on");
+    if (cenaT.classList.contains("inunda")) return;
+    estado.pressao = 0;
+    const n = estado.nivel;
+    if (n >= 70 && n <= 92) { stT.textContent = "Nível dentro da faixa recomendada."; concluir("captacao"); avisar("Captação concluída com precisão."); }
+    else if (n > 92) { stT.textContent = "Quase transbordando. Aceito."; concluir("captacao"); }
+    else if (n >= 40) stT.textContent = "Nível abaixo da faixa. Continue.";
+    else if (n > 0) stT.textContent = "Pouca água. Segure por mais tempo.";
+  }
+  const ab = $("#abrir");
+  ab.addEventListener("pointerdown", iniciarEncher);
+  ["pointerup", "pointerleave", "pointercancel"].forEach(ev => ab.addEventListener(ev, pararEncher));
+  ab.addEventListener("contextmenu", e => e.preventDefault());
+  ab.addEventListener("keydown", e => { if (e.key === " " || e.key === "Enter") iniciarEncher(e); });
+  ab.addEventListener("keyup", pararEncher);
+  $("#esvaziar").addEventListener("click", () => {
+    pararEncher(); cenaT.classList.remove("inunda"); setNivel(0); estado.pressao = 0; stT.textContent = "Aguardando comando.";
+  });
+
+  // ---------- Etapa 4: transporte ----------
+  const trilho = $("#trilho");
+  $("#mover").addEventListener("click", e => {
+    const fim = trilho.classList.toggle("fim");
+    $("#stTransporte").textContent = fim ? "Copo na boca. Percurso de 40 cm concluído." : "Copo na bancada.";
+    e.currentTarget.textContent = fim ? "Devolver à bancada" : "Iniciar transporte";
+    if (fim) { concluir("transporte"); avisar("Transporte concluído sem derramamentos."); }
+  });
+
+  // ---------- Etapa 5: três goles ----------
+  const copoB = $("#copoBeber"), pontos = $$("#pontos i"), btnG = $("#gole");
+  const textosGole = ["", "Gole 1 de 3: sabor identificado como água.", "Gole 2 de 3: textura líquida confirmada.", "Gole 3 de 3: sede neutralizada."];
+  btnG.addEventListener("click", () => {
+    if (btnG.disabled) return;
+    if (estado.goles >= 3) {                              // repetir
+      estado.goles = 0; pontos.forEach(p => p.classList.remove("ok"));
+      copoB.style.setProperty("--nivel", "80%"); btnG.textContent = "Dar um gole";
+      $("#stBeber").textContent = "Copo reabastecido."; return;
+    }
+    btnG.disabled = true; copoB.classList.add("gole");
+    setTimeout(() => {
+      copoB.classList.remove("gole"); estado.goles++;
+      pontos[estado.goles - 1].classList.add("ok");
+      copoB.style.setProperty("--nivel", (80 - estado.goles * 25) + "%");
+      $("#stBeber").textContent = textosGole[estado.goles];
+      btnG.disabled = false;
+      if (estado.goles >= 3) { btnG.textContent = "Repetir"; concluir("ingestao"); avisar("Ingestão registrada. A parte física continua com você."); }
+    }, 1000);
+  });
+
+  // ---------- Etapa 6: validação e certificado ----------
+  function textoRelatorio() {
+    return ["FLUXA | CERTIFICADO DE CONCLUSÃO",
+      `Protocolo: ${$("#cProt").textContent}`, `Equipamento: ${$("#cEquip").textContent}`,
+      `Tempo de operação: ${$("#cTempo").textContent}`, `Inundações: ${$("#cInund").textContent}`,
+      `Pendências: ${$("#cPend").textContent}`, "Documento humorístico."].join("\n");
+  }
+  $("#sim").addEventListener("click", () => {
+    const pend = Object.keys(etapas).filter(k => !estado.feitas.has(k)).map(k => etapas[k]);
+    const seg = Math.round((Date.now() - estado.inicio) / 1000);
+    $("#cProt").textContent = "FLX-" + String(Math.floor(Math.random() * 900000) + 100000);
+    $("#cEquip").textContent = nomes[estado.equip];
+    $("#cTempo").textContent = `${Math.floor(seg / 60)} min ${String(seg % 60).padStart(2, "0")} s`;
+    $("#cInund").textContent = String(estado.inundacoes);
+    $("#cPend").textContent = pend.length ? pend.join(", ") : "Nenhuma";
+    $("#cert").classList.add("on"); $("#vazio").style.display = "none";
+    $("#decl").textContent = pend.length
+      ? "Certificado emitido com ressalvas: há etapas que você ainda não executou."
+      : "Declaração registrada. Não temos meios de verificar, mas confiamos em você.";
+    $("#decl").style.color = pend.length ? "var(--erro)" : "var(--ok)";
+    concluir("validacao");
+  });
+  $("#nao").addEventListener("click", () => {
+    $("#decl").style.color = ""; $("#decl").textContent = "Sem problema. Pegue um copo, consiga água potável e volte quando estiver pronto.";
+  });
+  $("#copiar").addEventListener("click", async () => {
+    const texto = textoRelatorio();
+    try {
+      if (navigator.clipboard && isSecureContext) await navigator.clipboard.writeText(texto);
+      else {
+        const ta = document.createElement("textarea");
+        ta.value = texto; ta.style.cssText = "position:fixed;opacity:0";
+        document.body.appendChild(ta); ta.select();
+        const ok = document.execCommand("copy"); ta.remove(); if (!ok) throw 0;
+      }
+      avisar("Relatório copiado.");
+    } catch (e) { avisar("Não foi possível copiar. Selecione o texto manualmente."); }
+  });
+
+  rolar();
+})();
+</script>
+</body>
+</html>
